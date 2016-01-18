@@ -1,0 +1,1 @@
+g++ -o socketClient SocketClient.cpp
