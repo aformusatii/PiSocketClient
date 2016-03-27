@@ -15,9 +15,12 @@ int main(int argc , char *argv[])
 		return 1;
 	}
 
-	char r = (char) atoi(argv[2]);
-	char g = (char) atoi(argv[3]);
-	char b = (char) atoi(argv[4]);
+	int data_size = argc - 2;
+	char data[data_size];
+
+	for (int i = 0; i < data_size; i++) {
+		data[i] = (char) atoi(argv[i + 2]);
+	}
 
     int sock;
     struct sockaddr_in server;
@@ -47,10 +50,8 @@ int main(int argc , char *argv[])
 
     //puts("Connected\n");
 
-	char rgb[] = {r, g, b};
-
     //Send some data
-    if( send(sock , rgb , 3, 0) < 0)
+    if( send(sock , data , data_size, 0) < 0)
     {
         puts("Send failed");
         return 1;
